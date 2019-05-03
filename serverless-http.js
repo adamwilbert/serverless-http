@@ -13,9 +13,10 @@ module.exports = function(app, opts) {
 
   const framework = getFramework(app);
   const provider = getProvider(options);
-  console.log("request", request);
-  console.log("context", context);
+  console.log(framework, provider, app, opts);
   return provider(async (request, ...context) => {
+    console.log("request", request);
+    console.log("context", context);
     await finish(request, options.request, ...context);
     const response = await framework(request);
     await finish(response, options.response, ...context);
